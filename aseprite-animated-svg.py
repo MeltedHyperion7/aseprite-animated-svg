@@ -3,6 +3,8 @@ import os
 import argparse
 import re
 
+from Frame import Frame
+
 def is_file(string):
     """ Ensure that the path entered is a real file. """
 
@@ -46,6 +48,9 @@ if __name__ == "__main__":
         number = file_match.groups()[0]
         file_name_without_number = file_name[:-len(number)]
         files = get_file_list(dirname, file_name_without_number)
+
+        num_frames = len(files)
+        frames = [Frame(file) for file in files]
 
     except FileNotFoundError:
         print('Provide a valid SVG file.')

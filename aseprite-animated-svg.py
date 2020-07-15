@@ -4,6 +4,7 @@ import argparse
 import re
 
 from Frame import Frame
+from Animation import Animation
 
 def is_file(string):
     """ Ensure that the path entered is a real file. """
@@ -51,6 +52,11 @@ if __name__ == "__main__":
 
         num_frames = len(files)
         frames = [Frame(file) for file in files]
+
+        animation = Animation(frames[0].width, frames[0].height, frames[0].scale)
+        animation.add_frames(frames)
+
+        print(animation.generate_svg())
 
     except FileNotFoundError:
         print('Provide a valid SVG file.')

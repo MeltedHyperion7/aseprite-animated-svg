@@ -1,0 +1,2 @@
+class GridSizeMismatchError(Exception):
+    pass

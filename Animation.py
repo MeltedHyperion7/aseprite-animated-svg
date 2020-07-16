@@ -4,10 +4,11 @@ from exceptions import GridSizeMismatchError
 from utils import animate_create_grid
 
 class Animation:
-    def __init__(self, width: int, height: int, scale: int):
+    def __init__(self, width: int, height: int, scale: int, duration: int):
         self.width = width
         self.height = height
         self.scale = scale
+        self.duration = duration
 
         self.num_frames = 0
 
@@ -79,8 +80,7 @@ class Animation:
         color_values_str = '; '.join(color_values)
         opacity_values_str = '; '.join(opacity_values)
 
-        # TODO assuming 100ms per frame. Add an option to change this
-        animation_duration = f'{self.num_frames * 100}ms'
+        animation_duration = f'{self.num_frames * self.duration}ms'
 
         return f'<animate attributeName="fill" dur="{animation_duration}" repeatCount="indefinite" begin="0s" keyTimes="{key_times_str}" values="{color_values_str}" /> \
             <animate attributeName="fill-opacity" dur="{animation_duration}" repeatCount="indefinite" begin="0s" keyTimes="{key_times_str}" values="{opacity_values_str}" />'
